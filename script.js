@@ -7,7 +7,7 @@ const gif = new GIF({
 });
 
 document.getElementById('generateBtn').addEventListener('click', () => {
-    const textInput = "Este es un texto de ejemplo para probar la animación de la máquina de escribir y la generación del archivo .gif.";
+    const textInput = document.getElementById('textInput').value; // Tomar el texto del campo de texto
     const preview = document.getElementById('animationPreview');
     const gifPreview = document.getElementById('generatedGif');
     preview.innerHTML = '';
@@ -30,8 +30,13 @@ document.getElementById('generateBtn').addEventListener('click', () => {
             span.textContent = textInput[index];
             preview.insertBefore(span, cursor);
             
-            // Convert preview to canvas
-            html2canvas(preview).then(canvas => {
+            // Convert preview to canvas with willReadFrequently attribute
+            html2canvas(preview, {
+                logging: true,
+                useCORS: true,
+                backgroundColor: null,
+                willReadFrequently: true // Configurar willReadFrequently
+            }).then(canvas => {
                 gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
                 if (index < textInput.length) {
                     setTimeout(typeWriter, 100); // Ajustar la velocidad según sea necesario
