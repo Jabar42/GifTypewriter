@@ -3,7 +3,7 @@ const gif = new GIF({
     quality: 10,
     width: 341,
     height: 204,
-    workerScript: 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js' // Asegurar la ruta correcta del worker script
+    workerScript: 'gif.worker.js' // Usar el script local
 });
 
 document.getElementById('generateBtn').addEventListener('click', () => {
