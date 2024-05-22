@@ -14,6 +14,10 @@
     color: black;
     padding: 10px;
     border: 1px solid black;
+    width: 341px;
+    height: 204px;
+    overflow: hidden;
+    position: relative;
 }
 .cursor {
     display: inline-block;
