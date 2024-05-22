@@ -1,0 +1,27 @@
+#textInput {
+    width: 100%;
+    height: 100px;
+}
+#generateBtn {
+    display: block;
+    margin-top: 10px;
+}
+#animationPreview {
+    margin-top: 20px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid black;
+}
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background-color: black;
+    animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
