@@ -29,3 +29,11 @@
 @keyframes blink {
     50% { opacity: 0; }
 }
+#gifPreview {
+    margin-top: 20px;
+}
+#generatedGif {
+    width: 341px;
+    height: 204px;
+    border: 1px solid black;
+}
