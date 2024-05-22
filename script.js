@@ -29,9 +29,17 @@ document.getElementById('generateBtn').addEventListener('click', () => {
             const span = document.createElement('span');
             span.textContent = textInput[index];
             preview.insertBefore(span, cursor);
-            gif.addFrame(preview, {delay: 100}); // Añadir el frame al gif
-            index++;
-            setTimeout(typeWriter, 100); // Ajustar la velocidad según sea necesario
+            
+            // Convert preview to canvas
+            html2canvas(preview).then(canvas => {
+                gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
+                if (index < textInput.length) {
+                    setTimeout(typeWriter, 100); // Ajustar la velocidad según sea necesario
+                } else {
+                    gif.render();
+                }
+                index++;
+            });
         } else {
             gif.render();
         }
