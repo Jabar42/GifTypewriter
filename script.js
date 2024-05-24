@@ -21,6 +21,12 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     let lineHeight = 20; // Altura de cada línea de texto
     let maxLines = Math.floor(preview.clientHeight / lineHeight);
 
+    // Calcular el retraso para 300 palabras por minuto
+    const wordsPerMinute = 300;
+    const charsPerWord = 5; // Promedio de caracteres por palabra
+    const charsPerMinute = wordsPerMinute * charsPerWord;
+    const delay = 60000 / charsPerMinute; // Milisegundos por carácter
+
     const typeWriter = () => {
         if (index < textInput.length) {
             if (preview.scrollHeight > preview.clientHeight) {
@@ -37,11 +43,10 @@ document.getElementById('generateBtn').addEventListener('click', () => {
                 backgroundColor: null,
             }).then(canvas => {
                 try {
-                    // Set the willReadFrequently attribute directly on the context
                     const context = canvas.getContext('2d', { willReadFrequently: true });
                     if (context) {
                         console.log('Canvas context with willReadFrequently set:', context);
-                        gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
+                        gif.addFrame(canvas, {delay: delay}); // Añadir el frame al gif
                     } else {
                         console.error('Invalid canvas context:', context);
                     }
@@ -49,7 +54,7 @@ document.getElementById('generateBtn').addEventListener('click', () => {
                     console.error('Error adding frame:', error);
                 }
                 if (index < textInput.length) {
-                    setTimeout(typeWriter, 100); // Ajustar la velocidad según sea necesario
+                    setTimeout(typeWriter, delay); // Ajustar la velocidad según sea necesario
                 } else {
                     gif.render();
                 }
