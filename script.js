@@ -38,7 +38,12 @@ document.getElementById('generateBtn').addEventListener('click', () => {
                 // willReadFrequently attribute should be set directly on the canvas context
             }).then(canvas => {
                 try {
-                    gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
+                    if (canvas && canvas.getContext) {
+                        console.log('Canvas captured:', canvas);
+                        gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
+                    } else {
+                        console.error('Invalid canvas:', canvas);
+                    }
                 } catch (error) {
                     console.error('Error adding frame:', error);
                 }
