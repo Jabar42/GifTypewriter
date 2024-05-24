@@ -35,15 +35,21 @@ document.getElementById('generateBtn').addEventListener('click', () => {
                 logging: true,
                 useCORS: true,
                 backgroundColor: null,
-                willReadFrequently: true // Configurar willReadFrequently
+                canvas: { willReadFrequently: true } // Configurar willReadFrequently
             }).then(canvas => {
-                gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
+                try {
+                    gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
+                } catch (error) {
+                    console.error('Error adding frame:', error);
+                }
                 if (index < textInput.length) {
-                    setTimeout(typeWriter, 15); // Ajustar la velocidad según sea necesario
+                    setTimeout(typeWriter, 100); // Ajustar la velocidad según sea necesario
                 } else {
                     gif.render();
                 }
                 index++;
+            }).catch(error => {
+                console.error('Error converting preview to canvas:', error);
             });
         } else {
             gif.render();
@@ -55,4 +61,8 @@ document.getElementById('generateBtn').addEventListener('click', () => {
 gif.on('finished', function(blob) {
     const gifUrl = URL.createObjectURL(blob);
     document.getElementById('generatedGif').src = gifUrl;
+});
+
+gif.on('error', function(error) {
+    console.error('GIF generation error:', error);
 });
