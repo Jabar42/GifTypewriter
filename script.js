@@ -29,20 +29,21 @@ document.getElementById('generateBtn').addEventListener('click', () => {
             const span = document.createElement('span');
             span.textContent = textInput[index];
             preview.insertBefore(span, cursor);
-            
+
             // Convert preview to canvas with proper configuration
             html2canvas(preview, {
                 logging: true,
                 useCORS: true,
                 backgroundColor: null,
-                // willReadFrequently attribute should be set directly on the canvas context
             }).then(canvas => {
                 try {
-                    if (canvas && canvas.getContext) {
-                        console.log('Canvas captured:', canvas);
+                    // Set the willReadFrequently attribute directly on the context
+                    const context = canvas.getContext('2d', { willReadFrequently: true });
+                    if (context) {
+                        console.log('Canvas context with willReadFrequently set:', context);
                         gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
                     } else {
-                        console.error('Invalid canvas:', canvas);
+                        console.error('Invalid canvas context:', context);
                     }
                 } catch (error) {
                     console.error('Error adding frame:', error);
