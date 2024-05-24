@@ -30,12 +30,12 @@ document.getElementById('generateBtn').addEventListener('click', () => {
             span.textContent = textInput[index];
             preview.insertBefore(span, cursor);
             
-            // Convert preview to canvas with willReadFrequently attribute
+            // Convert preview to canvas with proper configuration
             html2canvas(preview, {
                 logging: true,
                 useCORS: true,
                 backgroundColor: null,
-                canvas: { willReadFrequently: true } // Configurar willReadFrequently
+                // willReadFrequently attribute should be set directly on the canvas context
             }).then(canvas => {
                 try {
                     gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
