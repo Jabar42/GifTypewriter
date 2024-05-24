@@ -39,7 +39,7 @@ document.getElementById('generateBtn').addEventListener('click', () => {
             }).then(canvas => {
                 gif.addFrame(canvas, {delay: 100}); // Añadir el frame al gif
                 if (index < textInput.length) {
-                    setTimeout(typeWriter, 30); // Ajustar la velocidad según sea necesario
+                    setTimeout(typeWriter, 15); // Ajustar la velocidad según sea necesario
                 } else {
                     gif.render();
                 }
