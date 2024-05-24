@@ -36,11 +36,12 @@ document.getElementById('generateBtn').addEventListener('click', () => {
             span.textContent = textInput[index];
             preview.insertBefore(span, cursor);
 
-            // Convert preview to canvas with proper configuration
+            // Convert preview to high-resolution canvas
             html2canvas(preview, {
                 logging: true,
                 useCORS: true,
                 backgroundColor: null,
+                scale: 2 // Aumentar la escala para mayor nitidez
             }).then(canvas => {
                 try {
                     const context = canvas.getContext('2d', { willReadFrequently: true });
