@@ -17,11 +17,13 @@
     border: 1px solid black;
     width: 341px;
     height: 204px;
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     font-size: 12px; /* Reducir el tamaño del texto */
     line-height: 1.2; /* Ajustar la altura de la línea para mayor claridad */
-    overflow-wrap: break-word; /* Romper las palabras largas */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinear al inicio para facilitar el scroll */
 }
 .cursor {
     display: inline-block;
@@ -41,4 +43,3 @@
     height: 204px;
     border: 1px solid black;
 }
-
