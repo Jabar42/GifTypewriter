@@ -16,7 +16,14 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     let index = 0;
     const cursor = document.createElement('span');
     cursor.classList.add('cursor');
-    preview.appendChild(cursor);
+    const textContainer = document.createElement('div');
+    textContainer.style.width = '100%';
+    textContainer.style.display = 'flex';
+    textContainer.style.flexDirection = 'column';
+    textContainer.style.alignItems = 'center';
+    textContainer.style.position = 'absolute';
+    preview.appendChild(textContainer);
+    textContainer.appendChild(cursor);
 
     let lineHeight = 20; // Altura de cada línea de texto
     let maxLines = Math.floor(preview.clientHeight / lineHeight);
@@ -29,12 +36,13 @@ document.getElementById('generateBtn').addEventListener('click', () => {
 
     const typeWriter = () => {
         if (index < textInput.length) {
-            if (preview.scrollHeight > preview.clientHeight) {
-                preview.scrollTop += lineHeight;
-            }
             const span = document.createElement('span');
             span.textContent = textInput[index];
-            preview.insertBefore(span, cursor);
+            textContainer.insertBefore(span, cursor);
+
+            if (textContainer.scrollHeight > preview.clientHeight) {
+                textContainer.style.top = `-${textContainer.scrollHeight - preview.clientHeight}px`;
+            }
 
             // Convert preview to high-resolution canvas
             html2canvas(preview, {
