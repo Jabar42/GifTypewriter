@@ -23,7 +23,7 @@
     line-height: 1.2; /* Ajustar la altura de la línea para mayor claridad */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinear al inicio para facilitar el scroll */
+    align-items: center;
 }
 .cursor {
     display: inline-block;

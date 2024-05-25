@@ -18,15 +18,12 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     cursor.classList.add('cursor');
     const textContainer = document.createElement('div');
     textContainer.style.width = '100%';
-    textContainer.style.display = 'flex';
-    textContainer.style.flexDirection = 'column';
-    textContainer.style.alignItems = 'center';
+    textContainer.style.textAlign = 'center';
     textContainer.style.position = 'absolute';
     preview.appendChild(textContainer);
     textContainer.appendChild(cursor);
 
     let lineHeight = 20; // Altura de cada línea de texto
-    let maxLines = Math.floor(preview.clientHeight / lineHeight);
 
     // Calcular el retraso para 300 palabras por minuto
     const wordsPerMinute = 300;
